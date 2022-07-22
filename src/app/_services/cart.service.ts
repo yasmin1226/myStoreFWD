@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Product } from './../_model/Product';
 import { CartProduct } from './../_model/CartProduct';
 import { BehaviorSubject } from 'rxjs';
 
@@ -11,22 +10,14 @@ export class CartService {
   cart: CartProduct[] = [];
   cart$ = new BehaviorSubject<CartProduct[]>([]);
   constructor() {}
-  // getProductFromCart(): CartProduct[] {
-  //   return this.cart;
-  // }
+
   getProducts() {
-    console.log(this.cart$.asObservable());
     return this.cart$.asObservable();
   }
-  // setProduct(product: CartProduct) {
-  //   this.cart.push(product);
-  //   this.cart$.next(product);
-  // }
 
   addToCart(product: CartProduct) {
-    console.log('add service', product);
     let item = this.cart.find((el) => el.id == product.id);
-    console.log('item', item);
+
     if (item) {
       this.updateAmount(item.id, item.qty + product.qty);
     } else {
@@ -59,8 +50,7 @@ export class CartService {
         el.qty = newAmount;
       }
     });
-    console.log(this.cart);
-    // this.cart$.next(this.cart);
+
     this.cart$.next(this.cart);
   }
   setUser(name: string) {

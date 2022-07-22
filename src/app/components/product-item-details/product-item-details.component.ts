@@ -27,18 +27,14 @@ export class ProductItemDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.getProduct(params['id']);
-      console.log(params);
     });
   }
   getProduct(id: any) {
-    console.log('id', id);
     this.productService.getProducts().subscribe((products) => {
       this.product = products.find((el: any) => el.id == id);
-      console.log(products);
     });
   }
   addToCard() {
-    console.log({ id: this.product.id, qty: Number(this.qty) });
     this.cartService.addToCart({
       id: this.product.id,
       name: this.product.name,
@@ -46,8 +42,6 @@ export class ProductItemDetailsComponent implements OnInit {
       qty: Number(this.qty),
       url: this.product.url,
     });
-    // this.cartService.addToCart(this.product);
-    console.log(this.cartService.cart);
     alert('Added To Card');
   }
 }

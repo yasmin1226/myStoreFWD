@@ -21,7 +21,6 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit(): void {}
   addToCard() {
-    console.log({ id: this.product.id, qty: Number(this.qty) });
     this.cartService.addToCart({
       id: this.product.id,
       name: this.product.name,
@@ -29,8 +28,6 @@ export class ProductItemComponent implements OnInit {
       qty: Number(this.qty),
       url: this.product.url,
     });
-    // this.cartService.addToCart(this.product);
-    console.log(this.cartService.cart);
     alert('Added To Card');
   }
 }
